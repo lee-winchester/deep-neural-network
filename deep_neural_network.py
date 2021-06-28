@@ -7,27 +7,13 @@ import sklearn
 from sklearn import datasets
 
 def sigmoid(Z):
-    """
-    Numpy sigmoid activation implementationsklearn
-    Arguments:
-    Z - numpy array of any shape
-    Returns:
-    A - output of sigmoid(z), same shape as Z
-    cache -- returns Z as well, useful during backpropagation
-    """
+    
     A = 1/(1+np.exp(-Z))
     cache = Z
     return A, cache
 
 def relu(Z):
-    """
-    Numpy Relu activation implementation
-    Arguments:
-    Z - Output of the linear layer, of any shape
-    Returns:
-    A - Post-activation parameter, of the same shape as Z
-    cache - a python dictionary containing "A"; stored for computing the backward pass efficiently
-    """
+    
     A = np.maximum(0,Z)  
     cache = Z 
     return A, cache
@@ -88,6 +74,19 @@ def initialize_parameters_deep(layer_dimension):
         parameters["b" + str(l)] = np.zeros((layer_dimension[l], 1))
 
     return parameters
+#adam initialization
+"""
+def initialize_parameters_he(layer_dimension):
+    parameters = {}
+
+    L = len(layer_dimension)
+
+    for l in range(1, L):
+        parameters["W" + str(l)] = np.random.randn(layer_dimension[l], layer_dimension[l-1]) * np.sqrt(2./layers_dims[l-1])
+        parameters["b" + str(l)] = np.zeros((layer_dimension[l], 1))
+
+    return parameters
+"""
 
 def linear_forward(A, W, b):
 
